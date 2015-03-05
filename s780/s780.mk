@@ -78,6 +78,11 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/CedarX-Crack/libswa1.so:system/lib/libswa1.so \
 	$(LOCAL_PATH)/CedarX-Crack/libswa2.so:system/lib/libswa2.so
 
+# Build gralloc fix
+PRODUCT_COPY_FILES += \
+	vendor/softwinner/s780/proprietary/lib/libMali.so:obj/lib/libMali.so \
+	vendor/softwinner/s780/proprietary/lib/libUMP.so:obj/lib/libUMP.so
+
 # Permission files
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
@@ -107,11 +112,14 @@ PRODUCT_PACKAGES += \
 	rild \
 	pppd
 
+# Gralloc
+PRODUCT_PACKAGES += \
+	gralloc.sun7i
+
 # HW display and lights
 PRODUCT_PACKAGES += \
 	display.sun7i \
-	lights.sun7i \
-	gralloc.sun7i
+	lights.sun7i
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -123,9 +131,7 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
-	audio.usb.default \
-	audio.primary.exDroid \
-	audio.r_submix.default
+	audio.primary.exDroid
 
 # EXT4 filesystem utils
 PRODUCT_PACKAGES += \

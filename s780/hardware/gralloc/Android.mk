@@ -18,6 +18,11 @@
 
 LOCAL_PATH := $(call my-dir)
 
+$(shell mkdir -p out/target/product/s780/obj/SHARED_LIBRARIES/libMali_intermediates)
+$(shell mkdir -p out/target/product/s780/obj/SHARED_LIBRARIES/libUMP_intermediates)
+$(shell touch out/target/product/s780/obj/SHARED_LIBRARIES/libMali_intermediates/export_includes)
+$(shell touch out/target/product/s780/obj/SHARED_LIBRARIES/libUMP_intermediates/export_includes)
+
 # HAL module implemenation, not prelinked and stored in
 # hw/<OVERLAY_HARDWARE_MODULE_ID>.<ro.product.board>.so
 include $(CLEAR_VARS)
@@ -27,7 +32,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_MODULE := gralloc.sun7i
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SHARED_LIBRARIES := liblog libcutils libMali libGLESv1_CM libGLES_mal libUMP libion
+LOCAL_SHARED_LIBRARIES := liblog libcutils libMali libGLESv1_CM libUMP libion
 
 # Include the UMP header files
 LOCAL_C_INCLUDES := device/softwinner/s780/hardware/include
