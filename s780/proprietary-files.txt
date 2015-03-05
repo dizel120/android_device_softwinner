@@ -1,0 +1,47 @@
+# EGL libs and dependencies
+lib/egl/libEGL_mali.so
+lib/egl/libGLESv1_CM_mali.so
+lib/egl/libGLESv2_mali.so
+lib/hw/gralloc.sun7i.so
+lib/libMali.so
+lib/libUMP.so
+
+# 3G Modem RIL
+lib/libsoftwinner-ril.so
+lib/libbroncho-ril-client.so
+lib/libm1190-gsm-ril.so
+lib/libm7281-wcdma-ril.so
+lib/libmg191-wcdma-ril.so
+lib/libmu509-wcdma-ril.so
+lib/libqsc-evdo-ril.so
+lib/libreference-ril.so
+lib/libtw-wcdma-ril.so
+lib/libzte-wcdma-ril.so
+
+# vendor files
+etc/firmware/rtk8723a
+etc/firmware/rtk8723_bt_config
+vendor/lib/libbt-vendor.so
+vendor/modules/mali.ko
+vendor/modules/ump.ko
+vendor/modules/disp.ko
+vendor/modules/hdmi.ko
+vendor/modules/lcd.ko
+vendor/modules/nand.ko
+vendor/modules/8188eu.ko
+vendor/modules/8188eu_mp.ko
+vendor/modules/ft5x_ts.ko
+vendor/modules/mma865x.ko
+vendor/modules/gc0308.ko
+vendor/modules/gc2035.ko
+vendor/modules/sunxi_csi0.ko
+vendor/modules/sunxi_csi1.ko
+vendor/modules/videobuf-core.ko
+vendor/modules/videobuf-dma-contig.ko
+vendor/modules/usbnet.ko
+vendor/modules/asix.ko
+vendor/modules/qf9700.ko
+vendor/modules/mcs7830.ko
+vendor/modules/rtl8150.ko
+vendor/modules/cdc_ether.ko
+vendor/modules/switch_gpio.ko

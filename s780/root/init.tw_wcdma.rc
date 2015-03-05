@@ -1,0 +1,70 @@
+#
+# The init dameon will first parse the init.rc and then this rc file. The commands
+# in the same section will be combined together. Then the commands are executed one
+# section by another in the following order: early-init, init, early-boot, boot.
+#
+
+#
+# init.rc doesn't define this section. If you want to make sure that your "on init" commands
+# are executed before those on init commands of init.rc, put the commands here.
+#
+#
+# If you need modify an environmental variable which is already defined in init.rc, 
+# you should edit the init.rc. 
+# The export command here doesn't support the usage of: export PATH $PATH:\system\bin
+#
+on init
+   chmod 0777 /dev/ttyS1
+   chmod 0777 /dev/modem
+
+on fs
+   exec /system/bin/busybox mount -t usbfs none /proc/bus/usb
+
+# init.rc doesn't define this section. If you want to make sure that your "on boot" commands
+# are executed before those on boot commands of init.rc, put the commands here.
+#
+
+on boot
+
+on property:ro.bootmode=charge
+	start ril-daemon
+	start data-daemon
+	#start modem-daemon
+
+on property:ro.factorytest=0
+	start ril-daemon
+	start data-daemon
+	#start modem-daemon
+
+service pppd_gprs /system/xbin/pppd_gprs
+	user root
+	group root
+	oneshot
+	disabled
+
+service dongle_pppd_gprs /system/xbin/pppd_gprs
+	user root
+	group root
+	oneshot
+	disabled
+
+service ril-daemon /system/bin/rild -l /system/lib/libtw-wcdma-ril.so -- -d /dev/ttyS1
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc
+	disabled
+
+service data-daemon /system/bin/data_daemon 3 6645 36883
+    user root
+    group radio cache inet misc
+    disabled
+
+#modem_proxy0==> 3 data port
+#modem_proxy1==> 1 gps port
+#-v usb vendor id, -p usb product id.
+service modem-daemon /system/bin/modem_proxyd -n 2 -i 3 -i 1 -t nec -v 0x19f5 -p 0x9013
+	user root
+	group radio cache inet misc
+    disabled
+

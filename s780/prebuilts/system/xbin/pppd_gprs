@@ -1,0 +1,20 @@
+#!/system/bin/sh
+
+USER=`/system/bin/getprop net.gprs.user`
+PASSWORD=`/system/bin/getprop net.gprs.password`
+DEVICE=`/system/bin/getprop net.gprs.device`
+AUTHTYPE=`/system/bin/getprop net.gprs.authtype`
+NUMBER=`/system/bin/getprop net.gprs.number`
+/system/bin/setprop net.gprs.ppp-exit ""
+
+if [ -z $NUMBER ] 
+	then
+	/system/bin/pppd $DEVICE 115200 debug defaultroute $AUTHTYPE connect-delay 5000 ipcp-max-failure 30 nodetach nocrtscts novj noipdefault usepeerdns user $USER password $PASSWORD
+	echo "NUMBER is null"
+else
+	/etc/ppp/call-pppd "$DEVICE 115200" $USER $PASSWORD "/system/bin/chat -v -s -S TIMEOUT 60 ABORT 'BUSY' ABORT 'ERROR' ABORT '+CME ERROR:' '' AT '' ATH0 '' $NUMBER CONNECT" "/system/bin/chat -v -s -S ABORT 'BUSY' ABORT 'ERROR' ABORT '+CME ERROR:' '' +++ATH0"
+	echo "number $NUMBER"
+fi
+#/system/bin/pppd $DEVICE 115200 debug defaultroute $AUTHTYPE connect-delay 5000 ipcp-max-failure 30 nodetach nocrtscts novj noipdefault usepeerdns user $USER password $PASSWORD
+#/etc/ppp/call-pppd "/dev/ttyUSB0 115200" "ctwap@mycdma.cn" "vnet.mobi" "/system/bin/chat -v -s -S TIMEOUT 60 ABORT 'BUSY' ABORT 'ERROR' ABORT '+CME ERROR:' '' AT '' ATH0 '' ATDT#777 CONNECT" "/system/bin/chat -v -s -S ABORT 'BUSY' ABORT 'ERROR' ABORT '+CME ERROR:' '' +++ATH0" /system/bin/setprop net.gprs.ppp-exit $?
+#exit $?

@@ -1,0 +1,13 @@
+#!/system/bin/sh
+#
+
+#network modules
+insmod /system/vendor/modules/usbnet.ko
+insmod /system/vendor/modules/asix.ko
+insmod /system/vendor/modules/qf9700.ko
+insmod /system/vendor/modules/mcs7830.ko
+insmod /system/vendor/modules/rtl8150.ko
+insmod /system/vendor/modules/cdc_ether.ko
+insmod /system/vendor/modules/switch_gpio.ko
+
+echo "done Additional Modules Autoload"

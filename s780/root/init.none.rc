@@ -1,0 +1,33 @@
+#
+# The init dameon will first parse the init.rc and then this rc file. The commands
+# in the same section will be combined together. Then the commands are executed one
+# section by another in the following order: early-init, init, early-boot, boot.
+#
+
+#
+# init.rc doesn't define this section. If you want to make sure that your "on init" commands
+# are executed before those on init commands of init.rc, put the commands here.
+#
+#
+# If you need modify an environmental variable which is already defined in init.rc, 
+# you should edit the init.rc. 
+# The export command here doesn't support the usage of: export PATH $PATH:\system\bin
+#
+# init.rc doesn't define this section. If you want to make sure that your "on boot" commands
+# are executed before those on boot commands of init.rc, put the commands here.
+#
+
+on init
+    exec /system/bin/busybox mount -t usbfs none /proc/bus/usb
+
+on boot
+
+# liballwinner-ril.so => libsoftwinner-ril.so
+service ril-daemon /system/bin/rild -l libsoftwinner-ril.so -- -d /dev/ttyUSB2
+	class main
+	socket rild stream 660 root radio
+	socket rild-debug stream 660 radio system
+	user root
+	group radio cache inet misc audio sdcard_rw
+
+

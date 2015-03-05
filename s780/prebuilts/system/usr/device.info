@@ -1,0 +1,4 @@
+;Behind the equals sign said detected equipment corresponding to the name of the driver
+;Note: don't change the file format!
+gsensor_module_name="mma865x"
+ctp_module_name="ft5x_ts"

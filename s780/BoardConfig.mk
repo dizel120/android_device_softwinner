@@ -1,0 +1,113 @@
+# Target Architecture
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a7
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
+# Hardware defaults
+USE_CAMERA_STUB := true
+TARGET_BOARD_PLATFORM := exDroid
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+# Build options
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RECOVERY := false
+TARGET_NO_KERNEL := false
+
+TARGET_BOOTLOADER_BOARD_NAME := wing
+TARGET_PROVIDES_INIT_RC := true
+
+# Recovery (probably useless since we are not building recovery)
+BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
+BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+TARGET_RECOVERY_UI_LIB := librecovery_ui_wing-s780
+SW_BOARD_TOUCH_RECOVERY := true
+SW_BOARD_RECOVERY_CHAR_HEIGHT := 60
+SW_BOARD_RECOVERY_CHAR_WIDTH  := 12
+SW_BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_10x18.h\"
+TARGET_RECOVERY_FSTAB := device/softwinner/s780/recovery.fstab
+
+# Cedar settings
+CEDARX_CHIP_VERSION := F51
+CEDARX_USE_SWAUDIO := Y
+CEDARX_USE_ION_MEM_ALLOCATOR := Y
+USE_OPENGL_RENDERER := true
+ENABLE_WEBGL := true
+BOARD_USE_SKIA_LCDTEXT := true
+BOARD_EGL_NEEDS_LEGACY_FB := true
+BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
+
+BOARD_EGL_CFG := device/softwinner/s780/egl.cfg
+
+# Widevine
+BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
+
+# Kernel
+TARGET_PREBUILT_KERNEL := device/softwinner/s780/kernel
+BOARD_KERNEL_BASE := 0x40000000
+BOARD_FLASH_BLOCK_SIZE := 4096
+BOARD_KERNEL_CMDLINE := console=ttyS0,115200 rw init=/init loglevel=8 
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# Memory
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
+
+# Vold
+BOARD_VOLD_MAX_PARTITIONS := 20
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := false
+TARGET_USE_CUSTOM_LUN_FILE_PATH = "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
+TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
+
+# Wi-Fi
+BOARD_WIFI_VENDOR := realtek
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+CONFIG_DRIVER_WEXT := y
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_rtl
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_rtl
+
+SW_BOARD_USR_WIFI := 8188eu
+BOARD_WLAN_DEVICE := 8188eu
+
+WIFI_DRIVER_MODULE_NAME   := "8188eu"
+WIFI_DRIVER_MODULE_PATH   := "/system/vendor/modules/8188eu.ko"
+WIFI_DRIVER_MODULE_ARG    := "ifname=wlan0if2name=p2p0"
+
+WIFI_FIRMWARE_LOADER      := ""
+WIFI_DRIVER_FW_PATH_STA   := ""
+WIFI_DRIVER_FW_PATH_AP    := ""
+WIFI_DRIVER_FW_PATH_P2P   := ""
+WIFI_DRIVER_FW_PATH_PARAM := ""
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BLUETOOTH_HCI_USE_USB := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/softwinner/s780/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/softwinner/s780/bluetooth/vnd_generic_usb.txt
+
+# GPS
+# "simulator":target board doesn't have a gps hardware module;"haiweixun":use the gps module offer by haiweixun
+BOARD_USES_GPS_TYPE := simulator
+
+# Bootanimation stuff
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+TARGET_BOOTANIMATION_USE_RGB565 := true
+
+# No hardware camera
+USE_CAMERA_STUB := true
+CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
+
+# Audio
+HAVE_HTC_AUDIO_DRIVER := true
+BOARD_USES_GENERIC_AUDIO := true
