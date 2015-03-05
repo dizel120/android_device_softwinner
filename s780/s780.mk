@@ -59,7 +59,6 @@ PRODUCT_COPY_FILES += \
 # Copy to recovery directory
 PRODUCT_COPY_FILES += \
 	vendor/softwinner/s780/proprietary/vendor/modules/nand.ko:recovery/root/nand.ko \
-	$(LOCAL_PATH)/recovery.fstab:recovery/root/recovery.fstab \
 	$(LOCAL_PATH)/fstab.sun7i:recovery/root/fstab.sun7i \
 	$(LOCAL_PATH)/root/init.rc:root/init.rc \
 	$(LOCAL_PATH)/root/initlogo.rle:recovery/root/initlogo.rle \
