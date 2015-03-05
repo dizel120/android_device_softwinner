@@ -27,7 +27,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_MODULE := gralloc.sun7i
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SHARED_LIBRARIES := liblog libcutils libMali libGLESv1_CM libUMP libion
+LOCAL_SHARED_LIBRARIES := liblog libcutils libMali libGLESv1_CM libGLES_mal libUMP libion
 
 # Include the UMP header files
 LOCAL_C_INCLUDES := device/softwinner/s780/hardware/include
